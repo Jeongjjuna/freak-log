@@ -51,10 +51,15 @@ function extractFileInfo(filename) {
   // console.log(`extractFileInfo: ${matches}`);
 
   if (matches) {
+    // category를 파싱한다. -> ["kotlin", "spring"]
+    categories = matches[3]
+    category_list = categories.split(" ")
+  
     return {
       date: matches[1],
       title: matches[2],
-      category: matches[3],
+      // category: matches[3],
+      category: category_list,
       thumbnail: matches[4]
         ? "img/" + matches[4]
         : `img/thumb${Math.floor(Math.random() * 10) + 1}.webp`,

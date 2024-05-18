@@ -32,8 +32,13 @@ function search(keyword, kinds) {
           if (kinds === "category") {
             // post를 parsing하여 카테고리 내 검색
             const postInfo = extractFileInfo(post.name);
-            if (postInfo.category.toLowerCase() === keyword) {
-              return post;
+
+            // ["kotlin", "spring"] 카테고리에 포함되는지 확인
+            category_list = postInfo.category
+            for (let i = 0; i < category_list.length; i++) {
+              if (category_list[i].toLowerCase() === keyword) {
+                return post
+              }
             }
           }
         });
@@ -194,17 +199,23 @@ function createCardElement(fileInfo, index) {
   const cardBody = document.createElement("div");
   cardBody.classList.add(...bloglistCardBodyStyle.split(" "));
 
-  const category = document.createElement("span");
-  category.classList.add(...bloglistCardCategoryStyle.split(" "));
-  category.textContent = fileInfo.category;
-  cardBody.appendChild(category);
+  // ------------ Blog전체 리스트에서 카테고리 표시하는 부분 -------------------
+  // cardBody에 category박스 하나씩 전부 넣어주기.
+  const category_list = fileInfo.category
+  for (let i = 0; i < category_list.length; i++) {
+    const category = document.createElement("span");
+    category.classList.add(...bloglistCardCategoryStyle.split(" "));
+    category.textContent = category_list[i];
+    category.style.marginRight = "5px"; // 카테고리 사이에 여백
+    cardBody.appendChild(category);
 
-  // category 이벤트 생성으로 카테고리 클릭 시 해당 카테고리로 검색
-  category.onclick = (event) => {
-    // 클릭했을 때 카드가 클릭되는 것이 아니라 카테고리가 클릭되게 해야함
-    event.stopPropagation();
-    search(fileInfo.category, "category");
-  };
+    // category 이벤트 생성으로 카테고리 클릭 시 해당 카테고리로 검색
+    category.onclick = (event) => {
+      // 클릭했을 때 카드가 클릭되는 것이 아니라 카테고리가 클릭되게 해야함
+      event.stopPropagation();
+      search(category_list[i], "category");
+    };
+  }
 
   const title = document.createElement("h2");
   title.classList.add(...bloglistCardTitleStyle.split(" "));
@@ -407,13 +418,20 @@ function renderBlogCategory() {
   blogList.forEach((post) => {
     const postInfo = extractFileInfo(post.name);
     if (postInfo) {
-      if (categoryList[postInfo.category.toLowerCase()]) {
-        categoryList[postInfo.category.toLowerCase()] += 1;
-      } else {
-        categoryList[postInfo.category.toLowerCase()] = 1;
+
+      // 모든 카테고리들을 순회하면서 카운팅
+      category_list = postInfo.category
+      for (let i = 0; i < category_list.length; i++) {
+        if (categoryList[category_list[i].toLowerCase()]) {
+          categoryList[category_list[i].toLowerCase()] += 1;
+        } else {
+          categoryList[category_list[i].toLowerCase()] = 1;
+        }
       }
     }
   });
+
+  // -------------- 오른쪽 상단의 버튼을 누르면 나오는 카테고리종류와 개수 리스트 --------------
   const categoryArray = Object.keys(categoryList);
   categoryArray.sort();
 
