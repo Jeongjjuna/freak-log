@@ -126,19 +126,26 @@ function styleMarkdown(kinds, text, title_info = null) {
 
     // category
     // category는 클릭하면 해당 카테고리의 블로그 리스트를 렌더링
-    const category = document.createElement("a");
-    category.classList.add(...postcategoryStyle.split(" "));
-    category.textContent = title_info.category;
+    const category_list = title_info.category
+    for (let i = 0; i < category_list.length; i++) {
 
-    category.onclick = (event) => {
-      event.preventDefault();
-      // console.log('click')
-      search(title_info.category);
-      const url = new URL(origin);
-      url.searchParams.set("search", title_info.category);
-      window.history.pushState({}, "", url);
-    };
-    title_section.appendChild(category);
+      // category 박스 모양 생성
+      const category = document.createElement("a");
+      category.classList.add(...postcategoryStyle.split(" "));
+      category.textContent = category_list[i];
+      category.style.marginRight = "5px"; // 카테고리 사이에 여백
+
+      // 해당 category 박스 모양 눌렀을 때 동작
+      category.onclick = (event) => {
+        event.preventDefault();
+        // console.log('click')
+        search(category_list[i]);
+        const url = new URL(origin);
+        url.searchParams.set("search", category_list[i]);
+        window.history.pushState({}, "", url);
+      };
+      title_section.appendChild(category);
+    }
 
     // title
     const title = document.createElement("h1");
