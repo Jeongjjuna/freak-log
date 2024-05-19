@@ -1,16 +1,76 @@
 /* 불러온 외부 폰트 */
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 500;
+  font-family: 'Ownglyph_eunbyul21-Rg';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_eunbyul21-Rg.woff2') format('woff2');
+  font-weight: normal;
   font-style: normal;
 }
 /* 전체 요소에 폰트 적용 */
 * {
-  font-family: 'Pretendard-Regular';
-  /* font-size: 24px; */
+  font-family: 'Ownglyph_eunbyul21-Rg';
+  font-size: 16px;
 }
 
+/* 다크모드 */
+body {
+  background-color: rgb(255, 255, 255);
+}
+[theme="dark-mode"] body {
+  background-color: rgb(19, 19, 19);
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+[theme="dark-mode"] #myCard,
+[theme="dark-mode"] #myCardBody {
+  background-color: rgb(236, 236, 236);
+}
+
+[theme="dark-mode"] img {
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 34px;
+  margin-left: 30px;
+}
+.switch input {
+  display: none;
+}
+.slider {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  cursor: pointer;
+  background-color: gray;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+/* ! */
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(236, 228, 228);
+  transition: 0.5s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: rgb(58, 58, 62);
+}
+input:checked + .slider::before {
+  /* ! */
+  transform: translateX(26px);
+}
+/* // 다크모드 영역 */
 
 #menu-button {
   width: 1.75rem;

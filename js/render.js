@@ -178,6 +178,8 @@ function createCardElement(fileInfo, index) {
     정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
     */
   const card = document.createElement("div");
+  card.id = "myCard"
+  card.style.borderRadius = "1rem"
   if (index === 0) {
     card.classList.add(...bloglistFirstCardStyle.split(" "));
   } else {
@@ -197,6 +199,8 @@ function createCardElement(fileInfo, index) {
   }
 
   const cardBody = document.createElement("div");
+  cardBody.id = "myCardBody"; // id 추가
+  cardBody.style.padding = "10px"; // 패딩 설정
   cardBody.classList.add(...bloglistCardBodyStyle.split(" "));
 
   // ------------ Blog전체 리스트에서 카테고리 표시하는 부분 -------------------
