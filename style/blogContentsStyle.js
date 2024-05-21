@@ -53,7 +53,7 @@ function styleMarkdown(kinds, text, title_info = null) {
       blockquote.classList.add(...postblockquoteStyle.split(" "))
     );
   tempDiv.querySelectorAll("pre").forEach((pre) => {
-    pre.classList.add(...postpreStyle.split(" "));
+    // pre.classList.add(...postpreStyle.split(" "));
 
     const code = pre.textContent;
 
@@ -74,6 +74,17 @@ function styleMarkdown(kinds, text, title_info = null) {
         alert("복사에 실패했습니다.");
       }
     });
+
+    // 코드 헤더 생성
+    const codeHeader = `
+      <div class="code-header">
+        <span class="red btn"></span>
+        <span class="yellow btn"></span>
+        <span class="green btn"></span>
+      </div>`;
+
+    // pre 요소 바로 위에 코드 헤더 삽입
+    pre.insertAdjacentHTML('beforebegin', codeHeader);
 
     // pre 요소 안에 버튼 삽입
     pre.appendChild(copyButton);

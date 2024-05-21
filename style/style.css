@@ -12,6 +12,77 @@
   color: #505860;
 }
 
+/* 코드 상단바 */
+.code-header {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  background-color: #434041;
+  border-radius: 8px 8px 0 0;
+}
+[theme="dark-mode"] .code-header {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  background-color: #d1cfd1;
+  border-radius: 8px 8px 0 0;
+}
+.code-header .btn {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+}
+.code-header .btn.red {
+  background-color: #F5655B;
+}
+[theme="dark-mode"] .code-header .btn.red {
+  filter: none;
+}
+.code-header .btn.yellow {
+  background-color: #F6BD3B;
+}
+[theme="dark-mode"] .code-header .btn.yellow {
+  background-color: #836010;
+}
+.code-header .btn.green {
+  background-color: #43C645;
+}
+[theme="dark-mode"] .code-header .btn.green {
+  background-color: #258f26;
+}
+
+/*----------- 코드 상단바 ---------*/
+
+/* 코드 스타일 부분 */
+.font-mono {
+  font-family: monospace;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.bg-transparent {
+  background-color: #f2f2f7;
+  border-radius: 0px 0px 10px 10px;
+}
+[theme="dark-mode"] .bg-transparent {
+  background-color: #dbdbde;
+}
+/* -------- 코드 스타일 부분 * ----------/
+
+
+pre::after {
+  content: attr(data-ke-language);
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  color: #cfd2d1;
+  font-size: 12px;
+}
+
+
 /* 다크모드 */
 body {
   background-color: rgb(255, 255, 255);
