@@ -1,15 +1,104 @@
 /* 불러온 외부 폰트 */
 @font-face {
-  font-family: 'SUITE-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 100;
   font-style: normal;
 }
 /* 전체 요소에 폰트 적용 */
 * {
-  font-family: 'SUITE-Regular';
+  font-family: 'Pretendard-Regular';
   font-size: 16px;
+  color: #505860;
 }
+
+/* 코드 상단바 */
+.code-header {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #434041;
+  border-radius: 8px 8px 0 0;
+}
+[theme="dark-mode"] .code-header {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #d1cfd1;
+  border-radius: 8px 8px 0 0;
+}
+.code-header .btn {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+}
+.code-header .btn.red {
+  background-color: #F5655B;
+}
+[theme="dark-mode"] .code-header .btn.red {
+  filter: none;
+}
+.code-header .btn.yellow {
+  background-color: #F6BD3B;
+}
+[theme="dark-mode"] .code-header .btn.yellow {
+  background-color: #836010;
+}
+.code-header .btn.green {
+  background-color: #43C645;
+}
+[theme="dark-mode"] .code-header .btn.green {
+  background-color: #258f26;
+}
+#language-span {
+  margin-left: 10px;
+  color: rgb(229, 226, 229);
+}
+[theme="dark-mode"] #language-span {
+  margin-left: 10px;
+  color: rgb(84, 72, 72);
+}
+#copy-button {
+  padding: 4px 8px;
+  margin-left: auto; /* 버튼을 오른쪽으로 이동시킵니다 */
+}
+
+
+/*----------- 코드 상단바 ---------*/
+
+/* 코드 스타일 부분 */
+.font-mono {
+  font-family: monospace;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.bg-transparent {
+  background-color: #f2f2f7;
+  border-radius: 0px 0px 10px 10px;
+}
+[theme="dark-mode"] .bg-transparent {
+  background-color: #dbdbde;
+}
+/* -------- 코드 스타일 부분 * ----------/
+
+
+pre::after {
+  content: attr(data-ke-language);
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  color: #cfd2d1;
+  font-size: 12px;
+}
+
 
 /* 다크모드 */
 body {
