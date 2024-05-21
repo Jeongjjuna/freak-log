@@ -17,6 +17,8 @@
   display: flex;
   align-items: center;
   padding: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   background-color: #434041;
   border-radius: 8px 8px 0 0;
 }
@@ -24,6 +26,8 @@
   display: flex;
   align-items: center;
   padding: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   background-color: #d1cfd1;
   border-radius: 8px 8px 0 0;
 }
@@ -51,6 +55,12 @@
 [theme="dark-mode"] .code-header .btn.green {
   background-color: #258f26;
 }
+
+#copy-button {
+  padding: 4px 8px;
+  margin-left: auto; /* 버튼을 오른쪽으로 이동시킵니다 */
+}
+
 
 /*----------- 코드 상단바 ---------*/
 

@@ -53,14 +53,12 @@ function styleMarkdown(kinds, text, title_info = null) {
       blockquote.classList.add(...postblockquoteStyle.split(" "))
     );
   tempDiv.querySelectorAll("pre").forEach((pre) => {
-    // pre.classList.add(...postpreStyle.split(" "));
 
     const code = pre.textContent;
 
     // 복사 버튼 생성
     const copyButton = document.createElement("button");
     copyButton.innerHTML = '<span class="sr-only">코드 복사하기</span>';
-    copyButton.classList.add(...notebookcopyButtonStyle.split(" "));
     copyButton.setAttribute("id", "copy-button");
 
     // 복사 버튼 클릭 이벤트, pre에 텍스트가 있는 경우에만 활성화
@@ -75,19 +73,29 @@ function styleMarkdown(kinds, text, title_info = null) {
       }
     });
 
-    // 코드 헤더 생성
-    const codeHeader = `
-      <div class="code-header">
-        <span class="red btn"></span>
-        <span class="yellow btn"></span>
-        <span class="green btn"></span>
-      </div>`;
+
+    // 헤더 div 생성
+    const codeHeader = document.createElement('div');
+    codeHeader.classList.add('code-header');
+    // 빨간공
+    const redBtn = document.createElement('span');
+    redBtn.classList.add('red', 'btn');
+    codeHeader.appendChild(redBtn);
+    // 노란공
+    const yellowBtn = document.createElement('span');
+    yellowBtn.classList.add('yellow', 'btn');
+    codeHeader.appendChild(yellowBtn);
+    // 초록공
+    const greenBtn = document.createElement('span');
+    greenBtn.classList.add('green', 'btn');
+    codeHeader.appendChild(greenBtn);
+    // 복사버튼
+    codeHeader.appendChild(copyButton);
+
 
     // pre 요소 바로 위에 코드 헤더 삽입
-    pre.insertAdjacentHTML('beforebegin', codeHeader);
+    pre.insertAdjacentElement('beforebegin', codeHeader);
 
-    // pre 요소 안에 버튼 삽입
-    pre.appendChild(copyButton);
   });
   tempDiv
     .querySelectorAll("code")
