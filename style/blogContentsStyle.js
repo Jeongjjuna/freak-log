@@ -54,7 +54,14 @@ function styleMarkdown(kinds, text, title_info = null) {
     );
   tempDiv.querySelectorAll("pre").forEach((pre) => {
 
-    const code = pre.textContent;
+    let code = pre.textContent;
+
+    // TODO : 앞에 라인 번호 출력
+    // const lines = code.split('\n');
+    // let totalBody = ""
+    // for (let i = 0; i < lines.length; i++) {
+    //     totalBody += (i + 1) + '   ' + lines[i] + '\n';
+    // }
 
     // 복사 버튼 생성
     const copyButton = document.createElement("button");
@@ -89,6 +96,15 @@ function styleMarkdown(kinds, text, title_info = null) {
     const greenBtn = document.createElement('span');
     greenBtn.classList.add('green', 'btn');
     codeHeader.appendChild(greenBtn);
+    // 어떤 언어인지 표시하기
+    const codeElement = pre.querySelector('code');
+    const classList = codeElement.classList;
+    const parts = classList[0].split('-');
+    const language = parts[1];
+    const languageSpan = document.createElement('span');
+    languageSpan.setAttribute("id", "language-span");
+    languageSpan.textContent = language;
+    codeHeader.appendChild(languageSpan);
     // 복사버튼
     codeHeader.appendChild(copyButton);
 

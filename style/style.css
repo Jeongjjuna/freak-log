@@ -55,7 +55,14 @@
 [theme="dark-mode"] .code-header .btn.green {
   background-color: #258f26;
 }
-
+#language-span {
+  margin-left: 10px;
+  color: rgb(229, 226, 229);
+}
+[theme="dark-mode"] #language-span {
+  margin-left: 10px;
+  color: rgb(84, 72, 72);
+}
 #copy-button {
   padding: 4px 8px;
   margin-left: auto; /* 버튼을 오른쪽으로 이동시킵니다 */
