@@ -29,6 +29,15 @@ gradle 환경에서는 알아서 빌드해주기 때문에 기보 라이브러�
 
 ## ✔ 문제풀이 하면서 유용한 문법을 모아보자(계속 업데이트)
 
+#### 💡 자료형
+- 코틀린에서 Int(래퍼)타입은, 자바의 원시형 int를 감싼 형태이다.
+- Int는 4바이트 약21억까지 (-2\**31) ~ (2\**31 - 1)
+- 추가 범위가 필요하면 Long 타입을 사용하자
+```kotlin
+val fourBillion = 4000000000
+val four = 4L
+```
+
 #### 💡 함수형 스타일
 - java의 stream과 다르게 문법이 간결  
 - it 지원  
@@ -39,6 +48,103 @@ members
     .filter { it.age = 10 }
     .map { it.name }
     .sorted()
+```
+
+#### 💡 Set, 해시 사용은 어떻게?
+- 기본적으로 배열 Array\<String> 을 활용한다.
+- 리스트가 필요하면 List\<String> 을 활용하자.
+```kotlin
+val reportSet: Set<String> = reqport.toSet() // report: Array<String>
+
+val reportLog: MutableMap<String, MutableList<String>> = mutableMapOf() // java.util.LinkedHashMap
+```
+
+#### 💡 Array\<Int>와 IntArray 활용
+- Array\<Int>는 자바의 Integer[] 와 같다.
+- IntArray는 자바의 int[] 와 같다.
+- <속도비교>
+    - IntArray 1억개 삽입 : 116밀리초
+    - IntArray 1억개 중 찾기 : 25밀리초
+    - Array\<Int> 1억개 삽입 : 830밀리초
+    - Array\<Int> 1억개 중 찾기 : 45밀리초
+```kotlin
+val a: Array<Int>
+
+val b: IntArray = a.toIntArray()
+
+val c: Array<Int> = b.toTypedArray()
+```
+
+#### 💡 Array\<Int> 출력
+```kotlin
+val array: Array<Int> = arrayOf(1, 2, 3, 4, 5)
+
+println(array.joinToString(separator = " "))
+```
+
+#### 💡 정렬
+- Array<Int>, IntArray 모두를 반환하는 sort()메서드가 아래와 같이 존재한다.
+```kotlin
+val a: Array<Int> = arrayOf(1, 2, 3)
+val b: IntArray = intArrayOf(4, 5, 6)
+val c: List<Int> = mutableListOf(1, 2, 3)
+
+
+println(a.sortedArray().joinToString(" "))
+println(a.sortedArrayDescending().joinToString(" "))
+
+println(b.sortedArray().joinToString(" "))
+println(b.sortedArrayDescending().joinToString(" "))
+
+println(c.sorted())
+println(c.sortedDescending())
+```
+
+#### 💡 index와 함께 순회하기(ex python의 enumerate)
+```kotlin
+val a: List<String>
+
+for ((idx, elem) in a.withIndex()) {
+    val b = ":"
+    println("$idx $b $elem")
+}
+```
+
+#### 💡 연결리스트로 그래프 만들기
+```kotlin
+val graphL: MutableMap<Int, MutableList<Int>> = mutableMapOf()
+
+for (edge in edges) {
+    graph.putIfAbsent(edge[0], mutableListOf())
+    graph[edge[0]]!!.add(edge[1])
+}
+```
+
+#### 💡 큐(Queue) 활용 -> 코틀린에서 제공하는 데크를 활용해볼까?
+- addFirst(), addLast(), removeFirst(), removeLast() 등 활용해보자
+```kotlin
+val deque: ArrayDeque<Int> = ArrayDeque<Int>()
+```
+
+#### 💡 데이터를 담을 수 있는 data클래스를 활용해보자.
+- 기존에 파이썬에서 튜플처럼(1, "문자", 0.5) data클래스를 활용하여 큐에 데이터를 넣는식으로 활용가능하다
+```kotlin
+data class Node(val index: Int, val sheep: Int, val wolves: Int, val nodes: List<Int>)
+```
+
+
+#### 💡 2차원 배열은 아래처럼 다뤄보자!
+```kotlin
+val N: Int = board.size
+val M: Int = boardp[0].size
+val matrix: Array<IntArray> = Array(N + 1) { IntArray(M + 1) }
+```
+
+#### 💡 지연초기화를 써야할 때도 있을 것 같다
+- 코틀린에서 val, var모두 초기에 선언을 반드시 해야한다.
+- 만약 값이 나중에 들어올 것 같으면 지연초기화를 해보자.
+```kotlin
+lateinit var board: Array<IntArray>
 ```
 
 <br><br>
